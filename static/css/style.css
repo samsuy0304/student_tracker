@@ -1,0 +1,24 @@
+body {
+    background-color: #f9f9f9;
+}
+
+/* Tabs styling to look cleaner (sheet-like) */
+#dashboardTabs .nav-link {
+  border-radius: 0;
+  border: none;
+  background-color: #f1f3f4;
+  color: #202124;
+  margin-right: 4px;
+}
+#dashboardTabs .nav-link.active {
+  background-color: #ffffff;
+  border-bottom: 3px solid #0d6efd; /* bootstrap primary-ish */
+  font-weight: 600;
+}
+.tab-content {
+  background: #fff;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+}
