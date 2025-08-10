@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add Student</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label>First Name</label>
+        <input type="text" name="first_name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Last Name</label>
+        <input type="text" name="last_name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Date of Birth</label>
+        <input type="date" name="dob" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label>Country of Citizenship</label>
+        <input type="text" name="citizenship" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label>Intended Major</label>
+        <input type="text" name="intended_major" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label>Entry Semester</label>
+        <select name="entry_semester" class="form-control">
+            <option value="">--</option>
+            <option>Fall</option>
+            <option>Spring</option>
+            <option>Summer</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Entry Year</label>
+        <input type="number" name="entry_year" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label>Assigned Date</label>
+        <input type="date" name="assigned_date" class="form-control" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ student.first_name }} {{ student.last_name }}</h2>
+<ul class="list-group mb-4">
+    <li class="list-group-item"><strong>DOB:</strong> {{ student.dob or 'N/A' }}</li>
+    <li class="list-group-item"><strong>Citizenship:</strong> {{ student.citizenship or 'N/A' }}</li>
+    <li class="list-group-item"><strong>Intended Major:</strong> {{ student.intended_major or 'N/A' }}</li>
+    <li class="list-group-item"><strong>Entry Semester/Year:</strong> {{ student.entry_semester or 'N/A' }} {{ student.entry_year or '' }}</li>
+    <li class="list-group-item"><strong>Assigned Date:</strong> {{ student.assigned_date }}</li>
+</ul>
+
+<h4>Tasks</h4>
+<form id="taskForm" method="POST" action="{{ url_for('add_task', student_id=student.id) }}" onsubmit="return addTaskAjax(event, {{ student.id }})">
+    <div class="input-group mb-3">
+        <input type="text" id="taskInput" name="description" class="form-control" placeholder="Add a task" required>
+        <input type="date" name="deadline" class="form-control">
+        <button class="btn btn-primary" type="submit">Add</button>
+    </div>
+</form>
+
+<ul class="list-group" id="taskList">
+    {% for task in student.tasks %}
+    <li class="list-group-item d-flex justify-content-between align-items-center" id="task-{{ task.id }}">
+        <div>
+            <input type="checkbox" class="form-check-input me-2" onchange="toggleTask({{ task.id }})" {% if task.completed %}checked{% endif %}>
+            <span id="task-desc-{{ task.id }}" {% if task.completed %}style="text-decoration: line-through; color: grey;"{% endif %}>
+                {{ task.description }}
+            </span>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-danger" onclick="deleteTask({{ task.id }})">Delete</button>
+        </div>
+    </li>
+    {% else %}
+    <li class="list-group-item">No tasks yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3">Back</a>
+{% endblock %}
